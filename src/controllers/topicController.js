@@ -33,7 +33,7 @@ module.exports = {
       } else {
         res.render("topics/show", {topic});
       }
-    })
+    });
   },
   destroy(req, res, next){
     topicQueries.deleteTopic(req.params.id, (err, topic) => {
