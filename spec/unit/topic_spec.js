@@ -66,7 +66,7 @@ describe("Topic", () => {
     it("should return an array of the associated posts for the topic the method is called on", (done) => {
       this.topic.getPosts().then(associatedPosts => {
         expect(associatedPosts[0].title).toBe("You have to create some test data first");
-        expect(associatedPosts[0].description).toBe("Make a topic and an associated post before each test");
+        expect(associatedPosts[0].body).toBe("Make a topic and an associated post before each test");
         expect(associatedPosts[0].topicId).toBe(this.topic.id);
         done();
       })
