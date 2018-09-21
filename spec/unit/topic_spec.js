@@ -50,7 +50,7 @@ describe("Topic", () => {
 
     it("should not create a topic with a missing title or description", (done) => {
       Topic.create({
-        title: "Hahah this topic only has a title"
+        title: "Hahaha this topic only has a title"
       })
       .then((topic) => {
         done();
