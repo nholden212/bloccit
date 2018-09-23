@@ -2,11 +2,11 @@
 module.exports = (sequelize, DataTypes) => {
   var Topic = sequelize.define('Topic', {
     title: {
-      DataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     description: {
-      DataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     }
   }, {});

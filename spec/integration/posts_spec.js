@@ -85,14 +85,14 @@ describe("routes : posts", () => {
   describe("POST /topics/:topicId/posts/:id/destroy", () => {
     it("should delete the post with the associated ID", (done) => {
       expect(post.id).toBe(1);
-      request(.post(`${base}/${this.topic.id}/posts/${this.post.id}/destroy`, (err, res, body) => {
+      request(post(`${base}/${this.topic.id}/posts/${this.post.id}/destroy`, (err, res, body) => {
         Post.findById(1)
         .then((post) => {
           expect(err).toBeNull();
           expect(post).toBeNull();
           done();
         })
-      });
+      }));
     });
   });
 
@@ -115,7 +115,7 @@ describe("routes : posts", () => {
           title: "Snowman Building Competition",
           body: "I love watching them melt slowly."
         }
-      }, (err, res body) => {
+      }, (err, res, body) => {
         expect(res.statusCode).toBe(302);
         done();
       });
