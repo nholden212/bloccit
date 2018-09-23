@@ -24,8 +24,8 @@ module.exports = {
       title: newAd.title,
       description: newAd.description
     })
-    .then((topic) => {
-      callback(null, topic);
+    .then((ad) => {
+      callback(null, ad);
     })
     .catch((err) => {
       callback(err);

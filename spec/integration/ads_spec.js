@@ -1,6 +1,6 @@
 const request = require("request");
 const server = require("../../src/server");
-const base = "http://localhost:3000/topics/";
+const base = "http://localhost:3000/ads/";
 const sequelize = require("../../src/db/models/index").sequelize;
 const Ad = require("../../src/db/models").Ad;
 
@@ -19,6 +19,28 @@ describe("routes : ads", () => {
       })
       .catch((err) => {
         console.log(err);
+        done();
+      });
+    });
+  });
+
+  describe("GET /ads", () => {
+    it("should return a status code 200 and all ads", (done) => {
+      request.get(base, (err, res, body) => {
+        expect(res.statusCode).toBe(200);
+        expect(err).toBeNull();
+        expect(body).toContain("Ads");
+        expect(body).toContain("Pringles");
+        done();
+      });
+    });
+  });
+
+  describe("GET /ads/new", () => {
+    it("should render a new ad form", (done) => {
+      request.get(`${base}new`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("New Ad");
         done();
       });
     });
@@ -73,7 +95,7 @@ describe("routes : ads", () => {
             expect(err).toBeNull();
             expect(ads.length).toBe(adCountBeforeDelete -1);
             done();
-          });
+          })
         });
       });
     });
@@ -83,34 +105,10 @@ describe("routes : ads", () => {
     it("should render a view with an edit ad form", (done) => {
       request.get(`${base}${this.ad.id}/edit`, (err, res, body) => {
         expect(err).toBeNull();
-        expect(body).toContain("Edit Topic");
-        expect(body).toContain("Chips");
+        expect(body).toContain("Edit Ad");
+        expect(body).toContain("Pringles");
         done();
       });
     });
   });
-
-  describe("POST /ads/:id/update", () => {
-    it("should update the ad with the given values", (done) => {
-      const options = {
-        url: `${base}${this.ad.id}/update`,
-        form: {
-          title: "Chips",
-          description: "There are a lot of them"
-        }
-      };
-      request.post(options,
-        (err, res, body) => {
-          expect(err).toBeNull();
-          Ad.findOne({
-            where: { id: this.ad.id }
-          })
-          .then((ad) => {
-            expect(ad.title).toBe("Chips");
-            done();
-          });
-        });
-    });
-  });
-
 });

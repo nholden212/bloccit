@@ -6,9 +6,9 @@ module.exports = {
       if(err){
         res.redirect(500, "static/index");
       } else {
-        res.render("ads/index", {topics});
+        res.render("ads/index", {ads});
       }
-    });
+    })
   },
   new(req, res, next){
     res.render("ads/new");
@@ -60,6 +60,6 @@ module.exports = {
       } else {
         res.redirect(`/ads/${ad.id}`);
       }
-    })
+    });
   }
 }

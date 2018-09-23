@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     Topic.hasMany(models.Rule, {
       foreignKey: "topicId",
       as: "rules"
-    })
+    });
   };
   return Topic;
 };

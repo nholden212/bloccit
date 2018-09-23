@@ -95,7 +95,7 @@ describe("routes: topics", () => {
             expect(err).toBeNull();
             expect(topics.length).toBe(topicCountBeforeDelete -1);
             done();
-          });
+          })
         });
       });
     });
@@ -130,7 +130,7 @@ describe("routes: topics", () => {
           .then((topic) => {
             expect(topic.title).toBe("JavaScript Frameworks");
             done();
-          });
+          })
         });
     });
   });
