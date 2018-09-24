@@ -1,4 +1,4 @@
-const sequelize = require("sequelize");
+const sequelize = require("../../src/db/models/index").sequelize;
 const Topic = require("../../src/db/models").Topic;
 const Post = require("../../src/db/models").Post;
 
@@ -15,7 +15,7 @@ describe("Topic", () => {
       .then((topic) => {
         this.topic = topic;
         Post.create({
-          title: "You have to create some test data first"
+          title: "You have to create some test data first",
           body: "Make a topic and an associated post before each test",
           topicId: this.topic.id
         })
