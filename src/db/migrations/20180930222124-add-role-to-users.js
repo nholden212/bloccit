@@ -6,7 +6,7 @@ module.exports = {
       "Users",
       "role",
       {
-        type:Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         defaultValue: "member"
       }
