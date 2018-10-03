@@ -30,8 +30,8 @@ describe("Topic", () => {
            }
          })
          .then((topic) => {
-           this.topic = topic; //store the topic
-           this.post = topic.posts[0]; //store the post
+           this.topic = topic;
+           this.post = topic.posts[0];
            done();
        })
      })
@@ -67,25 +67,13 @@ describe("Topic", () => {
     });
   });
   describe("#getPosts()", () => {
-    it("should create and associate a post with the topic", (done) => {
-      Post.create({
-        title: "test",
-        body: "this is a test",
-        topicId: this.topic.id,
-        userId: this.user.id
-      })
-      .then((post) => {
+    it("should return the posts associated with a given topic", (done) => {
         this.topic.getPosts()
         .then((posts) => {
-          expect(this.topic.id).toBe(post.topicId);
-          expect(this.topic.id).toBe(posts[1].topicId);
+          expect(posts[0].title).toContain("My first visit to Proxima Centauri b");
+          expect(posts[0].body).toContain("I saw some rocks.");
           done();
         });
-      })
-      .catch((err) => {
-        console.log(err);
-        done();
-      });
     });
   });
 });

@@ -5,12 +5,18 @@
   </head>
   <body>
     <% include ../static/partials/navbar.ejs %>
+
     <main class="container">
+
       <h1>Edit Topic</h1>
+
+      <% include ../static/partials/messages.ejs %>
+
+
       <form action="/topics/<%= topic.id %>/update" method="post">
         <div class="form-group">
           <label for="title">Topic title</label>
-          <input value="<%= topic.title %>" type="test" class="form-control" name="title" aria-describedby="titleHelp" placehodler="Enter Title">
+          <input value="<%= topic.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
         </div>
         <div class="form-group">
           <label for="description">Description</label>
@@ -19,6 +25,8 @@
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
     </main>
+
     <% include ../static/partials/baseScripts.ejs %>
+
   </body>
 </html>

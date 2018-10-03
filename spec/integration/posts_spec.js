@@ -97,6 +97,7 @@ describe("routes : posts", () => {
          }
        );
      });
+   });
   describe("GET /topics/:topicId/posts/:id", () => {
      it("should render a view with the selected post", (done) => {
        request.get(`${base}/${this.topic.id}/posts/${this.post.id}`, (err, res, body) => {
@@ -119,7 +120,6 @@ describe("routes : posts", () => {
         });
       });
     });
-  });
   describe("GET /topics/:topicId/posts/:id/edit", () => {
      it("should render a view with an edit post form", (done) => {
        request.get(`${base}/${this.topic.id}/posts/${this.post.id}/edit`, (err, res, body) => {
@@ -135,8 +135,8 @@ describe("routes : posts", () => {
         request.post({
           url: `${base}/${this.topic.id}/posts/${this.post.id}/update`,
           form: {
-            title: "Snowman Building Competition",
-            body: "I love watching them melt slowly."
+            title: "Snowman Building",
+            body: "I love watching them."
           }
         }, (err, res, body) => {
           expect(res.statusCode).toBe(302);
@@ -164,5 +164,4 @@ describe("routes : posts", () => {
           });
       });
     });
-
 });
