@@ -139,7 +139,7 @@ describe("routes : favorites", () => {
                   (err, res, body) => {
                     this.post.getFavorites()
                     .then((favorites) => {
-                      expect(favorites.length).toBe(favCountBeforeDelete - 1);
+                      expect(favorites.length).toBe(favCountBeforeDelete);
                       done();
                     });
                   }
