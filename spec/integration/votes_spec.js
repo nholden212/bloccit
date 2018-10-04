@@ -126,6 +126,29 @@ describe("routes : votes", () => {
               }
             );
           });
+        it("should not create an upvote if the user has already upvoted the post", (done) => {
+            Post.findOne({where: {title: "My first visit to Proxima Centauri b"}})
+            .then((post) => {
+              this.post = post;
+              Vote.create({
+                value: 1,
+                postId: this.post.id,
+                userId: this.user.id
+              })
+              .then((vote) => {
+                Vote.create({
+                  value: 1,
+                  postId: this.post.id,
+                  userId: this.user.id
+                })
+                .then((secondVote) => {
+                  done();
+                })
+                .catch((err) => {
+                  expect(err.message).toContain("Validation error");
+                });
+              });
+            });
         });
      describe("GET /topics/:topicId/posts/:postId/votes/downvote", () => {
           it("should create a downvote", (done) => {
@@ -156,5 +179,6 @@ describe("routes : votes", () => {
           });
         });
       });
+    });
   });
 });
