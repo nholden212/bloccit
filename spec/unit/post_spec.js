@@ -140,11 +140,8 @@ describe("Post", () => {
             }
           })
           .then((post) => {
-            post.getPoints()
-            .then((voteCount) => {
-              expect(voteCount).toBe(1);
-              done();
-            })
+            expect(post.getPoints()).toBe(1);
+            done();
           })
         });
    });
