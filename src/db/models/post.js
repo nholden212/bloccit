@@ -46,6 +46,12 @@ module.exports = (sequelize, DataTypes) => {
         postId: post.id
       });
     });
+    Post.afterCreate((post, callback) => {
+      return models.Vote.create({
+        userId: post.userId,
+        postId: post.id
+      });
+    });
   };
   Post.prototype.isOwner = function() {
     return this.userId === this.foreignKey;
