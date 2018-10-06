@@ -25,5 +25,12 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE"
     });
   };
+  Comment.addScope("lastFiveFor", (userId) => {
+    return {
+      where: { userId: userId },
+      limit: 5,
+      order: [["createdAt", "DESC"]]
+    }
+  });
   return Comment;
 };
